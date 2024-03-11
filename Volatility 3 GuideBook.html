@@ -1,0 +1,2476 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>521390</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="volatility-3-guidebook">Volatility 3 GuideBook</h1>
+<p>(Updated as of 05/03/2024)</p>
+<p><a href="https://github.com/volatilityfoundation/volatility3">https://github.com/volatilityfoundation/volatility3</a></p>
+<!-- vscode-markdown-toc -->
+
+<ul>
+<li><ol type="1">
+<li><a href="#SettingUpVolatility">Setting Up Volatility</a></li>
+</ol></li>
+<li><ol start="2" type="1">
+<li><a href="#DeterminingImageInfo">Determining Image Info</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#ForWindows">For Windows</a></li>
+<li>2.2. <a href="#ForLinux">For Linux</a></li>
+<li>2.3. <a href="#General">General</a></li>
+</ul></li>
+<li><ol start="3" type="1">
+<li><a href="#DownloadingImageProfile">Downloading Image Profile</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#Linux">Linux</a></li>
+</ul></li>
+<li><ol start="4" type="1">
+<li><a href="#CreatingLinuxProfiles">Creating Linux Profiles</a></li>
+</ol></li>
+<li><ol start="5" type="1">
+<li><a href="#WindowsImageAnalysis">Windows Image Analysis</a></li>
+</ol>
+<ul>
+<li>5.1. <a href="#Timeline">Timeline</a>
+<ul>
+<li>5.1.1. <a href="#Timeliner">Timeliner</a></li>
+</ul></li>
+<li>5.2. <a href="#ProcessInformation">Process Information</a>
+<ul>
+<li>5.2.1. <a href="#PsList">PsList</a></li>
+<li>5.2.2. <a href="#PsTree">PsTree</a></li>
+<li>5.2.3. <a href="#PsScan">PsScan</a></li>
+<li>5.2.4. <a href="#Sessions">Sessions</a></li>
+<li>5.2.5. <a href="#Joblinks">Joblinks</a></li>
+</ul></li>
+<li>5.3. <a href="#ExtractingSpecificProcesses">Extracting Specific Processes</a>
+<ul>
+<li>5.3.1. <a href="#Memmap">Memmap</a></li>
+<li>5.3.2. <a href="#Dumpfiles">Dumpfiles</a></li>
+<li>5.3.3. <a href="#Handles">Handles</a></li>
+<li>5.3.4. <a href="#IATImportAddressTable">IAT (Import Address Table)</a></li>
+</ul></li>
+<li>5.4. <a href="#Network">Network</a>
+<ul>
+<li>5.4.1. <a href="#NetScan">NetScan</a></li>
+<li>5.4.2. <a href="#NetStat">NetStat</a></li>
+</ul></li>
+<li>5.5. <a href="#CommandLine">Command Line</a>
+<ul>
+<li>5.5.1. <a href="#CmdLine">CmdLine</a></li>
+</ul></li>
+<li>5.6. <a href="#UserProfilesandCredentialHashes">User Profiles and Credential Hashes</a>
+<ul>
+<li>5.6.1. <a href="#GetSids">GetSids</a></li>
+<li>5.6.2. <a href="#Hashdump">Hashdump</a></li>
+<li>5.6.3. <a href="#Cachedump">Cachedump</a></li>
+<li>5.6.4. <a href="#LSAdump">LSAdump</a></li>
+</ul></li>
+<li>5.7. <a href="#EnvironmentVariables">Environment Variables</a>
+<ul>
+<li>5.7.1. <a href="#Envars">Envars</a></li>
+</ul></li>
+<li>5.8. <a href="#FileInformation">File Information</a>
+<ul>
+<li>5.8.1. <a href="#FileScan">FileScan</a></li>
+<li>5.8.2. <a href="#MFTScan">MFTScan</a></li>
+<li>5.8.3. <a href="#MFTADSAlternateDataStream">MFT ADS (Alternate Data Stream)</a></li>
+</ul></li>
+<li>5.9. <a href="#ServiceInformation">Service Information</a>
+<ul>
+<li>5.9.1. <a href="#SvcScan">SvcScan</a></li>
+<li>5.9.2. <a href="#SvcSids">SvcSids</a></li>
+</ul></li>
+<li>5.10. <a href="#DeviceandDriverInformation">Device and Driver Information</a>
+<ul>
+<li>5.10.1. <a href="#Devicetree">Devicetree</a></li>
+<li>5.10.2. <a href="#DriverIRP">DriverIRP</a></li>
+<li>5.10.3. <a href="#DriverModule">DriverModule</a></li>
+<li>5.10.4. <a href="#DriverScan">DriverScan</a></li>
+</ul></li>
+<li>5.11. <a href="#Registry">Registry</a>
+<ul>
+<li>5.11.1. <a href="#Hivelist">Hivelist</a></li>
+<li>5.11.2. <a href="#Hivescan">Hivescan</a></li>
+<li>5.11.3. <a href="#Userassist">Userassist</a></li>
+<li>5.11.4. <a href="#Certificates">Certificates</a></li>
+<li>5.11.5. <a href="#Printkey">Printkey</a></li>
+</ul></li>
+<li>5.12. <a href="#VirtualAddressDescriptor">Virtual Address Descriptor</a>
+<ul>
+<li>5.12.1. <a href="#VadWalk">VadWalk</a></li>
+<li>5.12.2. <a href="#VadInfo">VadInfo</a></li>
+<li>5.12.3. <a href="#VadYaraScan">VadYaraScan</a></li>
+</ul></li>
+<li>5.13. <a href="#Mutants">Mutants</a></li>
+<li>5.14. <a href="#TrueCryptNotTested">TrueCrypt (Not Tested)</a></li>
+<li>5.15. <a href="#OtherFileSystemInformation">Other File System Information</a>
+<ul>
+<li>5.15.1. <a href="#Statistics">Statistics</a></li>
+<li>5.15.2. <a href="#PoolScanner">PoolScanner</a></li>
+<li>5.15.3. <a href="#BigPools">BigPools</a></li>
+<li>5.15.4. <a href="#SSDT">SSDT</a></li>
+<li>5.15.5. <a href="#MBRScan">MBRScan</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<!-- vscode-markdown-toc-config
+    numbering=true
+    autoSave=true
+    /vscode-markdown-toc-config -->
+
+<!-- /vscode-markdown-toc -->
+
+<h2 id="1-setting-up-volatility">1. <a name='SettingUpVolatility'></a>Setting Up Volatility</h2>
+<ol type="1">
+<li>Pull <a href="https://github.com/volatilityfoundation/volatility3">volatility3</a> from Github.</li>
+<li>Download and install python3.</li>
+<li>Install the required Python libraries</li>
+</ol>
+<p><code>pip install -r requirements.txt</code></p>
+<p>For Python 3.10 and above, install <code>setuptools</code></p>
+<p><code>pip install setuptools</code></p>
+<h2 id="2-determining-image-info">2. <a name='DeterminingImageInfo'></a>Determining Image Info</h2>
+<p>Before analysing any memory image, it is important to determine the profile of the raw file. Although Volatility 3 is able to determine the profiles and process the image automatically without specifying the profile as an argument, it can only be done when connected to the Internet, which is not the most ideal way when dealing with sensitive information. Similar to Volatility 2's <code>imageinfo</code>, there are a few options to determine the profile of an memory file using Volatility 3.</p>
+<h3 id="21-for-windows">2.1. <a name='ForWindows'></a>For Windows</h3>
+<ul>
+<li><code>python3 vol.py -f &lt;image&gt; windows.info.Info</code></li>
+</ul>
+<p>Example Output:</p>
+<pre><code>Volatility 3 Framework 2.5.2
+Progress: 100.00        PDB scanning finished
+Variable    Value
+
+Kernel Base   0xf80611800000
+DTB   0x1aa000
+Symbols file:///C:/Users/CySpec/Desktop/volatility3/volatility3/symbols/windows/ntkrnlmp.pdb/D9424FC4861E47C10FAD1B35DEC6DCC8-1.json.xz
+Is64Bit True
+IsPAE  False
+layer_name   0 WindowsIntel32e
+memory_layer  1 FileLayer
+KdVersionBlock 0xf8061240f400
+Major/Minor   15.19041
+MachineType   34404
+KeNumberProcessors   4
+SystemTime   2024-02-15 16:37:18
+NtSystemRoot  C:\Windows
+NtProductType  NtProductWinNt
+NtMajorVersion 10
+NtMinorVersion 0
+PE MajorOperatingSystemVersion 10
+PE MinorOperatingSystemVersion 0
+PE Machine   34404
+PE TimeDateStamp    Mon Dec 9 11:07:51 2019</code></pre>
+<h3 id="22-for-linux">2.2. <a name='ForLinux'></a>For Linux</h3>
+<ul>
+<li><code>python3 vol.py -f &lt;image&gt; banners.Banner</code>
+<ul>
+<li>Preferred method</li>
+</ul></li>
+<li><code>strings &lt;image&gt; | grep 'Linux version'</code></li>
+</ul>
+<ul>
+<li>Not very accurate but is faster than running using Volatility</li>
+</ul>
+<h3 id="23-general">2.3. <a name='General'></a>General</h3>
+<ul>
+<li><code>python3 vol.py -f &lt;image&gt; -vvv &lt;os&gt;.&lt;options&gt;</code></li>
+</ul>
+<p>Example Output:</p>
+<pre><code>DEBUG  volatility3.framework.automagic.pdbscan: Kernel base determination - searching layer module list structure
+DEBUG  volatility3.framework.automagic.pdbscan: Kernel base determination - searching layer module list structure
+DEBUG  volatility3.framework.automagic.pdbscan: Kernel base determination - testing fixed base address
+DEBUG  volatility3.framework.automagic.pdbscan: Potential kernel_virtual_offset caused a page fault: 0xf80002400000
+DEBUG  volatility3.framework.automagic.pdbscan: Kernel base determination - optimized scan virtual layer
+DEBUG  volatility3.framework.automagic.pdbscan: Setting kernel_virtual_offset to 0xf80611800000
+DEBUG  volatility3.framework.symbols.windows.pdbutil: Using symbol library: ntkrnlmp.pdb\D9424FC4861E47C10FAD1B35DEC6DCC8-1
+INFO   volatility3.schemas: Dependency for validation unavailable: jsonschema
+DEBUG  volatility3.schemas: All validations will report success, even with malformed input
+INFO   volatility3.framework.automagic: Running automagic: SymbolFinder
+INFO   volatility3.framework.automagic: Running automagic: KernelModule</code></pre>
+<h2 id="3-downloading-image-profile">3. <a name='DownloadingImageProfile'></a>Downloading Image Profile</h2>
+<p>After getting the profile for the images, the profiles will have to be added to the <code>profiles/</code> folder of Volatility 3.</p>
+<p>Profile download links:</p>
+<p><a href="https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip">https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip</a></p>
+<p><a href="https://downloads.volatilityfoundation.org/volatility3/symbols/mac.zip">https://downloads.volatilityfoundation.org/volatility3/symbols/mac.zip</a></p>
+<p><a href="https://downloads.volatilityfoundation.org/volatility3/symbols/linux.zip">https://downloads.volatilityfoundation.org/volatility3/symbols/linux.zip</a></p>
+<p>Important: The first run of volatility with new symbol files will require the cache to be updated. The symbol packs contain a large number of symbol files and so may take some time to update! However, this process only needs to be run once on each new symbol file, so assuming the pack stays in the same location will not need to be done again. Please also note it can be interrupted and next run will restart itself.</p>
+<h3 id="31-linux">3.1. <a name='Linux'></a>Linux</h3>
+<p>Due to the ease of compiling Linux kernels, the Linux symbol tables provided only contains the common ones used. Customised Linux profiles can be generated.</p>
+<h4 id="311-creating-linux-profiles">3.1.1 <a name='CreatingLinuxProfiles'></a>Creating Linux Profiles</h4>
+<p>Can be produced by a tool such as <a href="https://github.com/volatilityfoundation/dwarf2json">dwarf2json</a>.</p>
+<h2 id="5-windows-image-analysis">5. <a name='WindowsImageAnalysis'></a>Windows Image Analysis</h2>
+<h3 id="51-timeline">5.1. <a name='Timeline'></a>Timeline</h3>
+<h4 id="511-timeliner">5.1.1. <a name='Timeliner'></a>Timeliner</h4>
+<p><code>python3 vol.py -f &lt;image&gt; timeliner.Timeliner</code></p>
+<p>Timeliner uses a combination of a few plugins to create a timeline, showing events that happen in a chronological order. Plugins used are:</p>
+<ol type="1">
+<li>MFTScan</li>
+<li>DllList</li>
+<li>SymlinkScan</li>
+<li>Sessions</li>
+<li>PsScan</li>
+<li>PsList</li>
+<li>NetScan</li>
+</ol>
+<p>Dates are in GMT+0. Fields extracted are as shown below:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Plugin</th>
+<th>Description</th>
+<th>Created Date</th>
+<th>Modified Date</th>
+<th>Accessed Date</th>
+<th>Changed Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MFTScan</td>
+<td>MFT FILE_NAME entry for TWE7E3~1.TMP</td>
+<td>2024-02-16 05:32:39.000000</td>
+<td>2024-02-16 05:32:39.000000</td>
+<td>2024-02-16 05:32:39.000000</td>
+<td>2024-02-16 05:32:39.000000</td>
+</tr>
+<tr class="even">
+<td>MFTScan</td>
+<td>MFT FILE_NAME entry for EtwRTEventLog-System.etl</td>
+<td>2024-02-16 05:33:05.000000</td>
+<td>2024-02-16 05:33:05.000000</td>
+<td>N/A</td>
+<td>2024-02-16 05:33:05.000000</td>
+</tr>
+<tr class="odd">
+<td>PsList</td>
+<td>Process: 4 System (200140095332416)</td>
+<td>2024-02-15 16:09:58.000000</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>PsScan</td>
+<td>Process: 356 smss.exe (200140159307840)</td>
+<td>2024-02-15 16:09:58.000000</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td>SymlinkScan</td>
+<td>Symlink: CdRom0 -&gt; \Device\CdRom0</td>
+<td>2024-02-15 16:09:58.000000</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-process-information">5.2. <a name='ProcessInformation'></a>Process Information</h3>
+<p>Information of running processes can be extracted using the following commands.</p>
+<ul>
+<li>PsList</li>
+<li>PsTree</li>
+<li>PsScan</li>
+<li>Sessions</li>
+<li>JobLinks</li>
+</ul>
+<h4 id="521-pslist">5.2.1. <a name='PsList'></a>PsList</h4>
+<p>PsList generates a listing of all running processes of the machine.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.pslist.PsList</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>PPID</th>
+<th>ImageFileName</th>
+<th>Offset(V)</th>
+<th>Threads</th>
+<th>Handles</th>
+<th>SessionId</th>
+<th>Wow64</th>
+<th>CreateTime</th>
+<th>ExitTime</th>
+<th>File output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4</td>
+<td>0</td>
+<td>System</td>
+<td>0xb606bf49a040</td>
+<td>143</td>
+<td>-</td>
+<td>N/A</td>
+<td>False</td>
+<td>2024-02-15 16:09:58.000000</td>
+<td>N/A</td>
+<td>Disabled</td>
+</tr>
+<tr class="even">
+<td>108</td>
+<td>4</td>
+<td>Registry</td>
+<td>0xb606bf5b5040</td>
+<td>4</td>
+<td>-</td>
+<td>N/A</td>
+<td>False</td>
+<td>2024-02-15 16:09:57.000000</td>
+<td>N/A</td>
+<td>Disabled</td>
+</tr>
+<tr class="odd">
+<td>356</td>
+<td>4</td>
+<td>smss.exe</td>
+<td>0xb606c319d040</td>
+<td>2</td>
+<td>-</td>
+<td>N/A</td>
+<td>False</td>
+<td>2024-02-15 16:09:58.000000</td>
+<td>N/A</td>
+<td>Disabled</td>
+</tr>
+</tbody>
+</table>
+<p>Processes of interest can also be dumped out by adding the <code>--dump</code> option.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.pslist.PsList -o &lt;output directory&gt; --pid &lt;pid&gt; --dump</code></p>
+<h4 id="522-pstree">5.2.2. <a name='PsTree'></a>PsTree</h4>
+<p>PsTree generates a tree directory of running processes and shows the relationship between parent and child processes. The number of '*' denotes the level of child processes.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.pstree.PsTree</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>PPID</th>
+<th>ImageFileName</th>
+<th>Offset(V)</th>
+<th>Threads</th>
+<th>Handles</th>
+<th>SessionId</th>
+<th>Wow64</th>
+<th>CreateTime</th>
+<th>ExitTime</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>604</td>
+<td>524</td>
+<td>winlogon.exe</td>
+<td>0xb606c585f080</td>
+<td>5</td>
+<td>-</td>
+<td>1</td>
+<td>False</td>
+<td>2024-02-15 16:10:02.000000</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>* 4268</td>
+<td>604</td>
+<td>userinit.exe</td>
+<td>0xb606c6e70080</td>
+<td>0</td>
+<td>-</td>
+<td>1</td>
+<td>False</td>
+<td>2024-02-15 16:10:07.000000</td>
+<td>2024-02-15 16:10:27.000000</td>
+</tr>
+<tr class="odd">
+<td>** 4352</td>
+<td>4268</td>
+<td>explorer.exe</td>
+<td>0xb606c6e76340</td>
+<td>83</td>
+<td>-</td>
+<td>1</td>
+<td>False</td>
+<td>2024-02-15 16:10:07.000000</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>*** 7044</td>
+<td>4352</td>
+<td>VBoxTray.exe</td>
+<td>0xb606c7642080</td>
+<td>11</td>
+<td>-</td>
+<td>1</td>
+<td>False</td>
+<td>2024-02-15 16:10:21.000000</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td>*** 6884</td>
+<td>4352</td>
+<td>SecurityHealth</td>
+<td>0xb606c727a080</td>
+<td>1</td>
+<td>-</td>
+<td>1</td>
+<td>False</td>
+<td>2024-02-15 16:10:20.000000</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h4 id="523-psscan">5.2.3. <a name='PsScan'></a>PsScan</h4>
+<p>PsScan is similar to PsList, but might be able to extract recently terminated processes.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.pstree.PsScan</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>PPID</th>
+<th>ImageFileName</th>
+<th>Offset(V)</th>
+<th>Threads</th>
+<th>Handles</th>
+<th>SessionId</th>
+<th>Wow64</th>
+<th>CreateTime</th>
+<th>ExitTime</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4352</td>
+<td>4268</td>
+<td>explorer.exe</td>
+<td>0xb606c6e76340</td>
+<td>83</td>
+<td>-</td>
+<td>1</td>
+<td>False</td>
+<td>2024-02-15 16:10:07.000000</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>4400</td>
+<td>4316</td>
+<td>ctfmon.exe</td>
+<td>0xb606c6ee4280</td>
+<td>9</td>
+<td>-</td>
+<td>1</td>
+<td>False</td>
+<td>2024-02-15 16:10:08.000000</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td>3724</td>
+<td>1468</td>
+<td>notepad.exe</td>
+<td>0xb606c70a6080</td>
+<td>1</td>
+<td>-</td>
+<td>1</td>
+<td>False</td>
+<td>2024-02-15 16:33:10.000000</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h4 id="524-sessions">5.2.4. <a name='Sessions'></a>Sessions</h4>
+<p>Sessions show which processes are initiated by which users, and can be used to identify suspicious users that initiated a certain process.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.sessions.Sessions</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Session ID</th>
+<th>Session Type</th>
+<th>Process ID</th>
+<th>Process</th>
+<th>User Name</th>
+<th>Create Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>-</td>
+<td>532</td>
+<td>wininit.exe</td>
+<td>/SYSTEM</td>
+<td>2024-02-15 16:10:02.000000</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>-</td>
+<td>676</td>
+<td>services.exe</td>
+<td>/SYSTEM</td>
+<td>2024-02-15 16:10:02.000000</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>Console</td>
+<td>4352</td>
+<td>explorer.exe</td>
+<td>GGG/MogamBro</td>
+<td>2024-02-15 16:10:07.000000</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>-</td>
+<td>4400</td>
+<td>ctfmon.exe</td>
+<td>GGG/MogamBro</td>
+<td>2024-02-15 16:10:08.000000</td>
+</tr>
+</tbody>
+</table>
+<h4 id="525-joblinks">5.2.5. <a name='Joblinks'></a>Joblinks</h4>
+<p>Joblinks shows the active jobs that are running on the system.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.joblinks.JobLinks</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset(V)</th>
+<th>Name</th>
+<th>PID</th>
+<th>PPID</th>
+<th>Sess</th>
+<th>JobSess</th>
+<th>Wow64</th>
+<th>Total</th>
+<th>Active</th>
+<th>Term</th>
+<th>JobLink</th>
+<th>Process</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xb606c61be340</td>
+<td>svchost.exe</td>
+<td>1056</td>
+<td>676</td>
+<td>0</td>
+<td>0</td>
+<td>False</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>N/A</td>
+<td>(Original Process)</td>
+</tr>
+<tr class="even">
+<td>* 0xb606c61be340</td>
+<td>svchost.exe</td>
+<td>1056</td>
+<td>676</td>
+<td>0</td>
+<td>0</td>
+<td>False</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Yes</td>
+<td>C:\Windows\System32\svchost.exe</td>
+</tr>
+<tr class="odd">
+<td>0xb606c8905080</td>
+<td>conhost.exe</td>
+<td>780</td>
+<td>1468</td>
+<td>1</td>
+<td>1</td>
+<td>False</td>
+<td>39</td>
+<td>4</td>
+<td>0</td>
+<td>N/A</td>
+<td>(Original Process)</td>
+</tr>
+<tr class="even">
+<td>* 0xb606c7a17080</td>
+<td>WinRAR.exe</td>
+<td>8436</td>
+<td>4352</td>
+<td>1</td>
+<td>0</td>
+<td>False</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Yes</td>
+<td>C:\Program Files\WinRAR\WinRAR.exe</td>
+</tr>
+<tr class="odd">
+<td>* 0xb606c7de1080</td>
+<td>cmd.exe</td>
+<td>1468</td>
+<td>7352</td>
+<td>1</td>
+<td>0</td>
+<td>False</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Yes</td>
+<td>C:\Windows\system32\cmd.exe</td>
+</tr>
+<tr class="even">
+<td>* 0xb606c8905080</td>
+<td>conhost.exe</td>
+<td>780</td>
+<td>1468</td>
+<td>1</td>
+<td>0</td>
+<td>False</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Yes</td>
+<td>C:\Windows\system32\conhost.exe</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-extracting-specific-processes">5.3. <a name='ExtractingSpecificProcesses'></a>Extracting Specific Processes</h3>
+<ul>
+<li>memmap</li>
+<li>dumpfiles</li>
+<li>handles</li>
+<li>dlllist</li>
+<li>priveleges</li>
+<li>IAT (Import Address Table)</li>
+</ul>
+<h4 id="531-memmap">5.3.1. <a name='Memmap'></a>Memmap</h4>
+<p>To perform a memory dump of a specific process:</p>
+<p><code>python3 vol.py -f &lt;image&gt; -o &lt;output directory&gt; windows.memmap.Memmap --dump --pid &lt;pid&gt;</code></p>
+<p>An example output is shown below:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Virtual</th>
+<th>Physical</th>
+<th>Size</th>
+<th>Offset in File</th>
+<th>File output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0x3e60000</td>
+<td>0x69ffb000</td>
+<td>0x1000</td>
+<td>0x0</td>
+<td>pid.3724.dmp</td>
+</tr>
+<tr class="even">
+<td>0x3e70000</td>
+<td>0x8bfc000</td>
+<td>0x1000</td>
+<td>0x1000</td>
+<td>pid.3724.dmp</td>
+</tr>
+<tr class="odd">
+<td>0x7ffe0000</td>
+<td>0x4825000</td>
+<td>0x1000</td>
+<td>0x2000</td>
+<td>pid.3724.dmp</td>
+</tr>
+<tr class="even">
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td>0xfa4007c00000</td>
+<td>0x84acb000</td>
+<td>0x1000</td>
+<td>0x28282000</td>
+<td>pid.3724.dmp</td>
+</tr>
+<tr class="even">
+<td>0xfa4007c01000</td>
+<td>0xb3dcc000</td>
+<td>0x1000</td>
+<td>0x28283000</td>
+<td>pid.3724.dmp</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<pre class="shell"><code>$ file pid.3724.dmp
+pid.3724.dmp: data
+$ strings pid.3724.dmp | grep notepad
+Microsoft.Windows.Shell.notepad,processorArchitecture=&quot;amd64&quot;,type=&quot;win32&quot;,version=&quot;5.1.0.0&quot;C:\Windows\system32\notepad.exe
+notepad.hlp
+C:\Windows\system32\notepad.exe
+...</code></pre>
+<h4 id="532-dumpfiles">5.3.2. <a name='Dumpfiles'></a>Dumpfiles</h4>
+<p>After dumping the memory of the process, strings analysis can be performed to identify any keywords of interests.</p>
+<p>Executables can also be dumped out using pslist:</p>
+<p><code>python3 vol.py -f &lt;image&gt; -o &lt;output directory&gt; windows.pslist.PsList --pid &lt;pid&gt; --dump</code></p>
+<p>An example output is shown below:</p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>PPID</th>
+<th>ImageFileName</th>
+<th>Offset(V)</th>
+<th>Threads</th>
+<th>Handles</th>
+<th>SessionId</th>
+<th>Wow64</th>
+<th>CreateTime</th>
+<th>ExitTime</th>
+<th>File output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3724</td>
+<td>1468</td>
+<td>notepad.exe</td>
+<td>0xb606c70a6080</td>
+<td>1</td>
+<td>-</td>
+<td>1</td>
+<td>False</td>
+<td>2024-02-15 16:33:10.000000</td>
+<td>N/A</td>
+<td>3724.notepad.exe.0x7ff702300000.dmp</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<pre><code>$ file 3724.notepad.exe.0x7ff702300000.dmp
+3724.notepad.exe.0x7ff702300000.dmp: PE32+ executable (GUI) x86-64, for MS Windows, 7 sections</code></pre>
+<p>Files associated with the process of interest can be extracted by using dumpfiles:</p>
+<p><code>python3 vol.py -f &lt;image&gt; -o &lt;output directory&gt; windows.dumpfiles.DumpFiles --pid &lt;pid&gt;</code></p>
+<p>Files associated with the process of interest can be extracted by using dumpfiles:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Cache</th>
+<th>FileObject</th>
+<th>FileName</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DataSectionObject</td>
+<td>0xb606ca105a20</td>
+<td>notepad.exe.mui</td>
+<td>file.0xb606ca105a20.0xb606ca634910.DataSectionObject.notepad.exe.mui.dat</td>
+</tr>
+<tr class="even">
+<td>DataSectionObject</td>
+<td>0xb606ca1090d0</td>
+<td>StaticCache.dat</td>
+<td>file.0xb606ca1090d0.0xb606c6e13d50.DataSectionObject.StaticCache.dat.dat</td>
+</tr>
+<tr class="odd">
+<td>ImageSectionObject</td>
+<td>0xb606c311a890</td>
+<td>shell32.dll</td>
+<td>file.0xb606c311a890.0xb606c4e12050.ImageSectionObject.shell32.dll.img</td>
+</tr>
+</tbody>
+</table>
+<p>Some other options that can be used for dumping files are shown as below:</p>
+<pre class="shell"><code>usage: volatility windows.dumpfiles.DumpFiles [-h] [--pid PID] [--virtaddr VIRTADDR] [--physaddr PHYSADDR] [--filter FILTER] [--ignore-case]
+
+options:
+ -h, --help      show this help message and exit
+ --pid PID      Process ID to include (all other processes are excluded)
+ --virtaddr VIRTADDR Dump a single _FILE_OBJECT at this virtual address
+ --physaddr PHYSADDR Dump a single _FILE_OBJECT at this physical address
+ --filter FILTER   Dump files matching regular expression FILTER
+ --ignore-case    Ignore case in filter match</code></pre>
+<h4 id="533-handles">5.3.3. <a name='Handles'></a>Handles</h4>
+<p>Handles currently used by a specific process can be extracted by specifying the PID of the process in the following command:</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.handles.Handles --pid &lt;pid&gt;</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>Process</th>
+<th>Offset</th>
+<th>HandleValue</th>
+<th>Type</th>
+<th>GrantedAccess</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>0xb606cabc6860</td>
+<td>0x4</td>
+<td>Event</td>
+<td>0x1f0003</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>0xa60c6a8c03e0</td>
+<td>0xb8</td>
+<td>Key</td>
+<td>0x20019</td>
+<td>MACHINE\SYSTEM\CONTROLSET001\CONTROL\NLS\SORTING\VERSIONS</td>
+</tr>
+<tr class="odd">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>0xb606c6a8c560</td>
+<td>0x3b8</td>
+<td>Semaphore</td>
+<td>0x100003</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="534-dlllist">5.3.4. <a name='Dlllist'></a>Dlllist</h4>
+<p>Associated DLLs with a specific process can be extracted by specifying the PID of the process in the following command:</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.dlllist.DllList --pid &lt;pid&gt;</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>Process</th>
+<th>Base</th>
+<th>Size</th>
+<th>Name</th>
+<th>Path</th>
+<th>LoadTime</th>
+<th>File output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>0x7ff702300000</td>
+<td>0x38000</td>
+<td>notepad.exe</td>
+<td>C:\Windows\system32\notepad.exe</td>
+<td>2024-02-15 16:33:10.000000</td>
+<td>Disabled</td>
+</tr>
+<tr class="even">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>0x7ffaef530000</td>
+<td>0x1f8000</td>
+<td>ntdll.dll</td>
+<td>C:\Windows\SYSTEM32\ntdll.dll</td>
+<td>2024-02-15 16:33:10.000000</td>
+<td>Disabled</td>
+</tr>
+<tr class="odd">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>0x7ffaee220000</td>
+<td>0x745000</td>
+<td>SHELL32.dll</td>
+<td>C:\Windows\System32\SHELL32.dll</td>
+<td>2024-02-15 16:33:10.000000</td>
+<td>Disabled</td>
+</tr>
+</tbody>
+</table>
+<h4 id="535-privileges">5.3.5. <a name='Privileges'></a>Privileges</h4>
+<p>The privileges that a specific process have can be extracted by specifying the PID of the process in the following format:</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.privileges.Privs --pid &lt;pid&gt;</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>Process</th>
+<th>Value</th>
+<th>Privilege</th>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>2</td>
+<td>SeCreateTokenPrivilege</td>
+<td></td>
+<td>Create a token object</td>
+</tr>
+<tr class="even">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>3</td>
+<td>SeAssignPrimaryTokenPrivilege</td>
+<td></td>
+<td>Replace a process-level token</td>
+</tr>
+<tr class="odd">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>4</td>
+<td>SeLockMemoryPrivilege</td>
+<td></td>
+<td>Lock pages in memory</td>
+</tr>
+<tr class="even">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>5</td>
+<td>SeIncreaseQuotaPrivilege</td>
+<td></td>
+<td>Increase quotas</td>
+</tr>
+<tr class="odd">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>34</td>
+<td>SeTimeZonePrivilege</td>
+<td>Present</td>
+<td>Adjust the time zone of the computer's internal clock</td>
+</tr>
+</tbody>
+</table>
+<h4 id="536-iat-import-address-table">5.3.6. <a name='IATImportAddressTable'></a>IAT (Import Address Table)</h4>
+<p>Import Libraries are dlls that an executable image are bound to, which are required for an executable to function. The Import Address Tables that running processes are using can be extracted using the IAT function.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.iat.IAT --pid &lt;pid&gt;</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>Name</th>
+<th>Library</th>
+<th>Bound</th>
+<th>Function</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>KERNEL32.dll</td>
+<td>False</td>
+<td>GetProcAddress</td>
+<td>0xffee046268b8</td>
+</tr>
+<tr class="even">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>KERNEL32.dll</td>
+<td>False</td>
+<td>CreateMutexExW</td>
+<td>0xffee046268c0</td>
+</tr>
+<tr class="odd">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>KERNEL32.dll</td>
+<td>False</td>
+<td>AcquireSRWLockShared</td>
+<td>0xffee046268c8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="54-network">5.4. <a name='Network'></a>Network</h3>
+<h4 id="541-netscan">5.4.1. <a name='NetScan'></a>NetScan</h4>
+<p>NetScan extracts information about network connections established with the host, including recently closed connections within the session.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.netscan.NetScan</code></p>
+<h4 id="542-netstat">5.4.2. <a name='NetStat'></a>NetStat</h4>
+<p>NetStat <b>only</b> extracts <b>existing</b> network connections established with the host.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.netstat.NetStat</code></p>
+<p>Both produce results in the following format:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>Proto</th>
+<th>LocalAddr</th>
+<th>LocalPort</th>
+<th>ForeignAddr</th>
+<th>ForeignPort</th>
+<th>State</th>
+<th>PID</th>
+<th>Owner</th>
+<th>Created</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xb606c64e4970</td>
+<td>TCPv4</td>
+<td>10.0.2.15</td>
+<td>50761</td>
+<td>20.50.80.209</td>
+<td>443</td>
+<td>ESTABLISHED</td>
+<td>1520</td>
+<td>SearchApp.exe</td>
+<td>2024-02-15 16:35:42.000000</td>
+</tr>
+<tr class="even">
+<td>0xb606c7b50a20</td>
+<td>TCPv4</td>
+<td>10.0.2.15</td>
+<td>49702</td>
+<td>152.199.39.108</td>
+<td>443</td>
+<td>CLOSE_WAIT</td>
+<td>4088</td>
+<td>WWAHost.exe</td>
+<td>2024-02-15 16:10:56.000000</td>
+</tr>
+<tr class="odd">
+<td>0xb606c60fca70</td>
+<td>TCPv6</td>
+<td>::</td>
+<td>49669</td>
+<td>::</td>
+<td>0</td>
+<td>LISTENING</td>
+<td>676</td>
+<td>services.exe</td>
+<td>2024-02-15 16:10:04.000000</td>
+</tr>
+<tr class="even">
+<td>0xb606c7f20440</td>
+<td>UDPv6</td>
+<td>::1</td>
+<td>1900</td>
+<td>*</td>
+<td>0</td>
+<td></td>
+<td>6556</td>
+<td>svchost.exe</td>
+<td>2024-02-15 16:11:20.000000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="55-command-line">5.5. <a name='CommandLine'></a>Command Line</h3>
+<h4 id="551-cmdline">5.5.1. <a name='CmdLine'></a>CmdLine</h4>
+<p>Details about executables and scripts ran can be extracted, together with the arguments supplied.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.cmdline.CmdLine</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>Process</th>
+<th>Args</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8436</td>
+<td>WinRAR.exe</td>
+<td>"C:\Program Files\WinRAR\WinRAR.exe" "C:\Users\MogamBro\Downloads\Follow-these-instructions.zip"</td>
+</tr>
+<tr class="even">
+<td>1468</td>
+<td>cmd.exe</td>
+<td>C:\Windows\system32\cmd.exe /K "C:\Users\MogamBro\AppData\Local\Temp\Rar$DIa8436.27164\steps.pdf .bat"</td>
+</tr>
+<tr class="odd">
+<td>780</td>
+<td>conhost.exe</td>
+<td>??\C:\Windows\system32\conhost.exe 0x4</td>
+</tr>
+<tr class="even">
+<td>8652</td>
+<td>chrome.exe</td>
+<td>Required memory at 0xb149572020 is not valid (process exited?)</td>
+</tr>
+<tr class="odd">
+<td>3724</td>
+<td>notepad.exe</td>
+<td>notepad.exe secret.png.enc</td>
+</tr>
+</tbody>
+</table>
+<h3 id="56-user-profiles-and-credential-hashes">5.6. <a name='UserProfilesandCredentialHashes'></a>User Profiles and Credential Hashes</h3>
+<h4 id="561-getsids">5.6.1. <a name='GetSids'></a>GetSids</h4>
+<p>Gets information about user accounts on the host.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.getsids.GetSids</code></p>
+<p>Example output:</p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>Process</th>
+<th>SID</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4</td>
+<td>System</td>
+<td>S-1-5-18</td>
+<td>Local System</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>System</td>
+<td>S-1-5-32-544</td>
+<td>Administrators</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>System</td>
+<td>S-1-1-0</td>
+<td>Everyone</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>System</td>
+<td>S-1-5-11</td>
+<td>Authenticated Users</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>System</td>
+<td>S-1-16-16384</td>
+<td>System Mandatory Level</td>
+</tr>
+<tr class="even">
+<td>108</td>
+<td>Registry</td>
+<td>S-1-5-18</td>
+<td>Local System</td>
+</tr>
+<tr class="odd">
+<td>108</td>
+<td>Registry</td>
+<td>S-1-5-32-544</td>
+<td>Administrators</td>
+</tr>
+<tr class="even">
+<td>108</td>
+<td>Registry</td>
+<td>S-1-1-0</td>
+<td>Everyone</td>
+</tr>
+<tr class="odd">
+<td>108</td>
+<td>Registry</td>
+<td>S-1-5-11</td>
+<td>Authenticated Users</td>
+</tr>
+<tr class="even">
+<td>108</td>
+<td>Registry</td>
+<td>S-1-16-16384</td>
+<td>System Mandatory Level</td>
+</tr>
+</tbody>
+</table>
+<p>Windows credentials can be obtained via the 3 methods:</p>
+<ol type="1">
+<li>Hashdump</li>
+<li>Cachedump</li>
+<li>LSAdump</li>
+</ol>
+<h4 id="562-hashdump">5.6.2. <a name='Hashdump'></a>Hashdump</h4>
+<p><code>python3 vol.py -f &lt;image&gt; windows.hashdump.Hashdump</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>User</th>
+<th>rid</th>
+<th>lmhash</th>
+<th>nthash</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Administrator</td>
+<td>500</td>
+<td>aad3b435b51404eeaad3b435b51404ee</td>
+<td>8a320467c7c22e321c3173e757194bb3</td>
+</tr>
+<tr class="even">
+<td>Guest</td>
+<td>501</td>
+<td>aad3b435b51404eeaad3b435b51404ee</td>
+<td>31d6cfe0d16ae931b73c59d7e0c089c0</td>
+</tr>
+<tr class="odd">
+<td>DefaultAccount</td>
+<td>503</td>
+<td>aad3b435b51404eeaad3b435b51404ee</td>
+<td>31d6cfe0d16ae931b73c59d7e0c089c0</td>
+</tr>
+<tr class="even">
+<td>WDAGUtilityAccount</td>
+<td>504</td>
+<td>aad3b435b51404eeaad3b435b51404ee</td>
+<td>74d0db3c3f38778476a44ff9ce0aefe2</td>
+</tr>
+<tr class="odd">
+<td>MogamBro</td>
+<td>1000</td>
+<td>aad3b435b51404eeaad3b435b51404ee</td>
+<td>8a320467c7c22e321c3173e757194bb3</td>
+</tr>
+</tbody>
+</table>
+<h4 id="563-cachedump">5.6.3. <a name='Cachedump'></a>Cachedump</h4>
+<p><code>python3 vol.py -f &lt;image&gt; windows.cachedump.Cachedump</code></p>
+<pre class="shell"><code>WARNING volatility3.plugins.windows.lsadump: Unable to find lsa key</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>Username</th>
+<th>Domain</th>
+<th>Domain name</th>
+<th>Hash</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="564-lsadump">5.6.4. <a name='LSAdump'></a>LSAdump</h4>
+<p><code>python3 vol.py -f &lt;image&gt; windows.lsadump.Lsadump</code></p>
+<pre class="shell"><code>WARNING volatility3.plugins.windows.lsadump: Unable to find lsa key</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Secret</th>
+<th>Hex</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="57-environment-variables">5.7. <a name='EnvironmentVariables'></a>Environment Variables</h3>
+<h4 id="571-envars">5.7.1. <a name='Envars'></a>Envars</h4>
+<p>Gets information about respective environment variables each running process is using.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.envars.Envars</code></p>
+<p>Example output:</p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>Process</th>
+<th>Block</th>
+<th>Variable</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>456</td>
+<td>csrss.exe</td>
+<td>0x17fbc402e30</td>
+<td>ComSpec</td>
+<td>C:\Windows\system32\cmd.exe</td>
+</tr>
+<tr class="even">
+<td>8436</td>
+<td>WinRAR.exe</td>
+<td>0x21e1dbc1cc0</td>
+<td>TEMP</td>
+<td>C:\Users\MogamBro\AppData\Local\Temp</td>
+</tr>
+<tr class="odd">
+<td>1468</td>
+<td>cmd.exe</td>
+<td>0x2a5cd911d80</td>
+<td>PATHEXT</td>
+<td>.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</td>
+</tr>
+<tr class="even">
+<td>9840</td>
+<td>FTK Imager.exe</td>
+<td>0x581ba0</td>
+<td>SSLKEYLOGFILE</td>
+<td>C:\Users\MogamBro\Desktop\keys</td>
+</tr>
+</tbody>
+</table>
+<h3 id="58-file-information">5.8. <a name='FileInformation'></a>File Information</h3>
+<p>File information can be extracted using filescan, or throught the MFT.</p>
+<h4 id="581-filescan">5.8.1. <a name='FileScan'></a>FileScan</h4>
+<p><code>python3 vol.py -f &lt;image&gt; windows.filescan.FileScan</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>Name</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xb606bfc50ab0</td>
+<td>$LogFile</td>
+<td>216</td>
+</tr>
+<tr class="even">
+<td>0xb606bfc50c20</td>
+<td>$Mft</td>
+<td>216</td>
+</tr>
+<tr class="odd">
+<td>0xb606bff9fd90</td>
+<td>\Windows\System32\drivers\filecrypt.sys</td>
+<td>216</td>
+</tr>
+</tbody>
+</table>
+<h4 id="582-mftscan">5.8.2. <a name='MFTScan'></a>MFTScan</h4>
+<p><code>python3 vol.py -f &lt;image&gt; windows.mftscan.MFTScan</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>Record Type</th>
+<th>Record Number</th>
+<th>Link Count</th>
+<th>MFT Type</th>
+<th>Permissions</th>
+<th>Attribute Type</th>
+<th>Created</th>
+<th>Modified</th>
+<th>Updated</th>
+<th>Accessed</th>
+<th>Filename</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0x8182f845d050</td>
+<td>FILE</td>
+<td>38932</td>
+<td>2</td>
+<td>File</td>
+<td>N/A</td>
+<td>STANDARD_INFORMATION</td>
+<td>2023-12-04 02:46:25.000000</td>
+<td>2023-12-04 02:46:25.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-15 16:03:22.000000</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>* 0x8182f845d0b0</td>
+<td>FILE</td>
+<td>38932</td>
+<td>2</td>
+<td>File</td>
+<td>Archive</td>
+<td>FILE_NAME</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>ksecdd.sys</td>
+</tr>
+<tr class="odd">
+<td>* 0x8182f845d120</td>
+<td>FILE</td>
+<td>38932</td>
+<td>2</td>
+<td>File</td>
+<td>Archive</td>
+<td>FILE_NAME</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>ksecdd.sys</td>
+</tr>
+<tr class="even">
+<td>0x8182f845d450</td>
+<td>FILE</td>
+<td>38933</td>
+<td>1</td>
+<td>File</td>
+<td>N/A</td>
+<td>STANDARD_INFORMATION</td>
+<td>2023-12-04 02:46:23.000000</td>
+<td>2023-12-04 02:46:23.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-15 16:07:06.000000</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td>* 0x8182f845d4b0</td>
+<td>FILE</td>
+<td>38933</td>
+<td>1</td>
+<td>File</td>
+<td>Archive</td>
+<td>FILE_NAME</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>2024-02-16 05:28:12.000000</td>
+<td>ksecdd.sys</td>
+</tr>
+</tbody>
+</table>
+<h4 id="583-mft-ads-alternate-data-stream">5.8.3. <a name='MFTADSAlternateDataStream'></a>MFT ADS (Alternate Data Stream)</h4>
+<p>For NTFS systems, it is possible to hide data in Alternate Data Streams to evade detection. Alternate Data Stream hidden in the MFT can be extracted using this command.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.mftscan.ADS</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>Record Type</th>
+<th>Record Number</th>
+<th>MFT Type</th>
+<th>Filename</th>
+<th>ADS Filename</th>
+<th>Hexdump</th>
+<th>Disasm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xdf80460cf528</td>
+<td>FILE</td>
+<td>114749</td>
+<td>DATA</td>
+<td>50% Discount available on the Mimikyu plushie.eml</td>
+<td>Zone.Identifier</td>
+<td><em>hexdump output</em></td>
+<td>5b 5a 6f 6e 65 54 72 61 6e 73 66 65 72 5d 0d 0a 5a 6f 6e 65 49 64 3d 33 0d 0a 52 65 66 65 72 72 65 72 55 72 6c 3d 68 74 74 70 73 3a 2f 2f 6f 75 74 6c 6f 6f 6b 2e 6f 66 66 69 63 65 2e 63 6f 6d 2f 0d 0a 48 6f 73 74 55 72 6c 3d 68 74 74 70 73 3a 2f 2f 6f 75 74 6c 6f 6f 6b 2e 6f 66 66 69 63 65 2e 63 6f 6d 2f 0d 0a</td>
+</tr>
+</tbody>
+</table>
+<h3 id="59-service-information">5.9. <a name='ServiceInformation'></a>Service Information</h3>
+<ul>
+<li>SvcScan</li>
+<li>GetServiceSIDs</li>
+</ul>
+<h4 id="591-svcscan">5.9.1. <a name='SvcScan'></a>SvcScan</h4>
+<p>Svcscan generates a list of services running on the system.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.svcscan.SvcScan</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>Order</th>
+<th>PID</th>
+<th>Start</th>
+<th>State</th>
+<th>Type</th>
+<th>Name</th>
+<th>Display</th>
+<th>Binary</th>
+<th>Binary (Registry)</th>
+<th>Dll</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0x1efc6a8d050</td>
+<td>598</td>
+<td>3292</td>
+<td>SERVICE_AUTO_START</td>
+<td>SERVICE_RUNNING</td>
+<td>SERVICE_WIN32_OWN_PROCESS</td>
+<td>WSearch</td>
+<td>Windows Search</td>
+<td>C:\Windows\system32\SearchIndexer.exe /Embedding</td>
+<td>%systemroot%\system32\SearchIndexer.exe /Embedding</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>0x1efc6a8d060</td>
+<td>597</td>
+<td>6496</td>
+<td>SERVICE_AUTO_START</td>
+<td>SERVICE_RUNNING</td>
+<td>SERVICE_WIN32_OWN_PROCESS</td>
+<td>SERVICE_WIN32_SHARE_PROCESS</td>
+<td>wscsvc</td>
+<td>Security Center</td>
+<td>C:\Windows\System32\svchost.exe -k LocalServiceNetworkRestricted -p</td>
+<td>%SystemRoot%\System32\svchost.exe -k LocalServiceNetworkRestricted -p</td>
+</tr>
+<tr class="odd">
+<td>0x1efc6a8d970</td>
+<td>596</td>
+<td>N/A</td>
+<td>SERVICE_DISABLED</td>
+<td>SERVICE_STOPPED</td>
+<td>SERVICE_KERNEL_DRIVER</td>
+<td>ws2ifsl</td>
+<td>ws2ifsl</td>
+<td>N/A</td>
+<td>\SystemRoot\system32\drivers\ws2ifsl.sys</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="592-getservicesids">5.9.2. <a name='GetServiceSIDs'></a>GetServiceSIDs</h4>
+<p>Generate a mapping of SIDs to services.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.getservicesids.GetServiceSIDs</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>SID</th>
+<th>Service</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S-1-5-80-4151353957-356578678-4163131872-800126167-2037860865</td>
+<td>.NET CLR Networking 4.0.0.0</td>
+</tr>
+<tr class="even">
+<td>S-1-5-80-1135273183-3738781202-689480478-891280274-255333391</td>
+<td>.NET Memory Cache 4.0</td>
+</tr>
+<tr class="odd">
+<td>S-1-5-80-3459415445-2224257447-3423677131-2829651752-4257665947</td>
+<td>3ware</td>
+</tr>
+</tbody>
+</table>
+<h3 id="510-device-and-driver-information">5.10. <a name='DeviceandDriverInformation'></a>Device and Driver Information</h3>
+<ul>
+<li>DeviceTree</li>
+<li>DriverIrp (Driver I/O Request Packets)</li>
+<li>DriverModule</li>
+<li>DriverScan</li>
+</ul>
+<h4 id="5101-devicetree">5.10.1. <a name='Devicetree'></a>DeviceTree</h4>
+<p>The device tree keeps track of devices in the system. The PnP manager builds this tree when the machine boots, using information from drivers and other components, and updates the tree as devices are added or removed.</p>
+<p>Each node of the device tree is called a device node, or devnode. A devnode consists of the device objects for the device's drivers, plus internal information maintained by the system. Therefore, there is a devnode for each device stack.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.devicetree.DeviceTree</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>Type</th>
+<th>DriverName</th>
+<th>DeviceName</th>
+<th>DriverNameOfAttDevice</th>
+<th>DeviceType</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xb606bfc2ccb0</td>
+<td>DRV</td>
+<td>mountmgr</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>* 0xb606bfc2ccb0</td>
+<td>DEV</td>
+<td>mountmgr</td>
+<td>MountPointManager</td>
+<td>N/A</td>
+<td>FILE_DEVICE_NETWORK</td>
+</tr>
+<tr class="odd">
+<td>0xb606bfc2dca0</td>
+<td>DRV</td>
+<td>storahci</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>* 0xb606bfc2dca0</td>
+<td>DEV</td>
+<td>storahci</td>
+<td>00000020</td>
+<td>N/A</td>
+<td>FILE_DEVICE_CD_ROM</td>
+</tr>
+<tr class="odd">
+<td>** 0xb606bfc2dca0</td>
+<td>ATT</td>
+<td>storahci</td>
+<td>CdRom0</td>
+<td>\Driver\cdrom</td>
+<td>FILE_DEVICE_CD_ROM</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5102-driverirp">5.10.2. <a name='DriverIRP'></a>DriverIrp</h4>
+<p>IRPs are an operating system structure that are used to deliver I/O data to device drivers.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>Driver Name</th>
+<th>IRP</th>
+<th>Address</th>
+<th>Module</th>
+<th>Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xb606bf47be20</td>
+<td>Ndu</td>
+<td>IRP_MJ_CREATE</td>
+<td>0xf8060cd3aa50</td>
+<td>Ndu</td>
+<td>POP_ETW_EVENT_DEFAULT_PEP_WORKER_END</td>
+</tr>
+<tr class="even">
+<td>0xb606bf47be20</td>
+<td>Ndu</td>
+<td>IRP_MJ_CREATE_NAMED_PIPE</td>
+<td>0xf8060cd3a8f0</td>
+<td>Ndu</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5103-drivermodule">5.10.3. <a name='DriverModule'></a>DriverModule</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>Known Exception</th>
+<th>Driver Name</th>
+<th>Service Key</th>
+<th>Alternative Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xa60c669115c8</td>
+<td>False</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>0xb606bf496cf0</td>
+<td>True</td>
+<td>RAW</td>
+<td></td>
+<td>\FileSystem\RAW</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5104-driverscan">5.10.4. <a name='DriverScan'></a>DriverScan</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>Start</th>
+<th>Size</th>
+<th>Service Key</th>
+<th>Driver Name</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xa60c669115c8</td>
+<td>0xff0180000004</td>
+<td>0x3</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>0xb606bf47be20</td>
+<td>0xf8060cd30000</td>
+<td>0x27000</td>
+<td>Ndu</td>
+<td>Ndu</td>
+<td>\Driver\Ndu</td>
+</tr>
+<tr class="odd">
+<td>0xb606bf480cc0</td>
+<td>0xf80613320000</td>
+<td>0x15000</td>
+<td>vdrvroot</td>
+<td>vdrvroot</td>
+<td>\Driver\vdrvroot</td>
+</tr>
+</tbody>
+</table>
+<h3 id="511-registry">5.11. <a name='Registry'></a>Registry</h3>
+<p>Registry information can be extracted using the following commands:</p>
+<ol type="1">
+<li>hivelist</li>
+<li>hivescan</li>
+<li>userassist</li>
+<li>certificates</li>
+<li>printkey</li>
+</ol>
+<h4 id="5111-hivelist">5.11.1. <a name='Hivelist'></a>Hivelist</h4>
+<p>Hivelist can be used to locate the virtual addresses of registry hives in memory, and the full paths to the corresponding hive on disk.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.registry.hivelist.HiveList</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>FileFullPath</th>
+<th>File output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xa60c65e44000</td>
+<td></td>
+<td>Disabled</td>
+</tr>
+<tr class="even">
+<td>0xa60c69992000</td>
+<td>\SystemRoot\System32\Config\SECURITY</td>
+<td>Disabled</td>
+</tr>
+<tr class="odd">
+<td>0xa60c70607000</td>
+<td>\SystemRoot\System32\Config\SAM</td>
+<td>Disabled</td>
+</tr>
+<tr class="even">
+<td>0xa60c6fb5b000</td>
+<td>??\C:\Users\MogamBro\ntuser.dat</td>
+<td>Disabled</td>
+</tr>
+</tbody>
+</table>
+<p>A filter can be used to extract hives with certain keywords, such as ntuser.dat:</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.registry.hivelist.HiveList --filter "ntuser.dat"</code></p>
+<h4 id="5112-hivescan">5.11.2. <a name='Hivescan'></a>Hivescan</h4>
+<p>Hivescan can be used to find the physical addresses of CMHIVEs (registry hives) in memory.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.registry.hivescan.HiveScan</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xa60c6f40a000</td>
+</tr>
+<tr class="even">
+<td>0xa60c70dbd000</td>
+</tr>
+<tr class="odd">
+<td>0xa60c7094b000</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5113-userassist">5.11.3. <a name='Userassist'></a>Userassist</h4>
+<p>UserAssist can be used to print userassist registry keys and information. Userassist contains information about recently executed programs on the system, either from shortcut (.LNK) or directly from the executable.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.registry.userassist.UserAssist</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Hive Offset</th>
+<th>Hive Name</th>
+<th>Path</th>
+<th>Last Write Time</th>
+<th>Type</th>
+<th>Name</th>
+<th>ID</th>
+<th>Count</th>
+<th>Focus Count</th>
+<th>Time Focused</th>
+<th>Last Updated</th>
+<th>Raw Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0xa60c70699000</td>
+<td>hive0xa60c70699000</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>0xa60c6fb5b000</td>
+<td>??\C:\Users\MogamBro\ntuser.dat</td>
+<td>ntuser.dat\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\UserAssist{9E04CAB2-CC14-11DF-BB8C-A2F1DED72085}\Count</td>
+<td>2024-02-15 16:05:38.000000</td>
+<td>Key</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td>* 0xa60c6fb5b000</td>
+<td>??\C:\Users\MogamBro\ntuser.dat</td>
+<td>ntuser.dat\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\UserAssist{CEBFF5CD-ACE2-4F4F-9178-9926F41749EA}\Count</td>
+<td>2024-02-15 16:37:18.000000</td>
+<td>Value</td>
+<td>%windir%\system32\mspaint.exe</td>
+<td>N/A</td>
+<td>7</td>
+<td>7</td>
+<td>0:01:00.504000</td>
+<td>2024-02-15 16:03:57.000000</td>
+<td><em>hexdump output</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="5114-certificates">5.11.4. <a name='Certificates'></a>Certificates</h4>
+<p>Certificates and certificates stores can be extracted from the registry using the certificates command.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.registry.certificates.Certificates</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Certificate path</th>
+<th>Certificate section</th>
+<th>Certificate ID</th>
+<th>Certificate name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Microsoft\SystemCertificates</td>
+<td>AuthRoot</td>
+<td>0563B8630D62D75ABBC8AB1E4BDFB5A899B24D43</td>
+<td>DigiCert</td>
+</tr>
+<tr class="even">
+<td>Microsoft\SystemCertificates</td>
+<td>AuthRoot</td>
+<td>4EB6D578499B1CCF5F581EAD56BE3D9B6744A5E5</td>
+<td>VeriSign</td>
+</tr>
+<tr class="odd">
+<td>Microsoft\SystemCertificates</td>
+<td>CA</td>
+<td>109F1CAED645BB78B3EA2B94C0697C740733031C</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5115-printkey">5.11.5. <a name='Printkey'></a>Printkey</h4>
+<p>Printkey can be used to display the subkeys, values, data and data types contained within a specific registry key.</p>
+<p>Example to print the "CurrentVersion" key:</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.registry.printkey.PrintKey --key "Software\Microsoft\Windows\CurrentVersion"</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Last Write Time</th>
+<th>Hive Offset</th>
+<th>Type</th>
+<th>Key</th>
+<th>Name</th>
+<th>Data</th>
+<th>Volatile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-</td>
+<td>0xa60c6ea2a000</td>
+<td>Key</td>
+<td>?\Software\Microsoft\Windows\CurrentVersion</td>
+<td>-</td>
+<td></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>2024-02-15 16:07:56.000000</td>
+<td>0xa60c6fb5b000</td>
+<td>Key</td>
+<td>??\C:\Users\MogamBro\ntuser.dat\SOFTWARE\Microsoft\Windows\CurrentVersion</td>
+<td>Run</td>
+<td></td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td>2024-02-15 16:10:23.000000</td>
+<td>0xa60c6fb5b000</td>
+<td>Key</td>
+<td>??\C:\Users\MogamBro\ntuser.dat\SOFTWARE\Microsoft\Windows\CurrentVersion</td>
+<td>RunOnce</td>
+<td></td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<p>Example to print the "CurrentVersion" key, subkeys and values:</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.registry.printkey.PrintKey --key "Software\Microsoft\Windows\CurrentVersion" --recurse</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Last Write Time</th>
+<th>Hive Offset</th>
+<th>Type</th>
+<th>Key</th>
+<th>Name</th>
+<th>Data</th>
+<th>Volatile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-</td>
+<td>0xa60c692c7000</td>
+<td>Key</td>
+<td>?\Software\Microsoft\Windows\CurrentVersion</td>
+<td>-</td>
+<td></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>2024-02-16 05:31:24.000000</td>
+<td>0xa60c70699000</td>
+<td>Key</td>
+<td>??\C:\Windows\ServiceProfiles\NetworkService\NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion</td>
+<td>Run</td>
+<td></td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td>* 2024-02-16 05:31:24.000000</td>
+<td>0xa60c70699000</td>
+<td>REG_SZ</td>
+<td>??\C:\Windows\ServiceProfiles\NetworkService\NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</td>
+<td>OneDriveSetup</td>
+<td>"C:\Windows\SysWOW64\OneDriveSetup.exe /thfirstsetup"</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="512-virtual-address-descriptor">5.12. <a name='VirtualAddressDescriptor'></a>Virtual Address Descriptor</h3>
+<p>VAD is a tree structure and like any tree structure it has a root (which is called Vadroot) and nodes/leafs (Vadnodes) that contains all the information related to memory ranges reserved for a specific process by the memory manager. For each chunk of a continuous virtual memory address allocations, memory manager creates a corresponding VAD node that contains the information about this continuous allocations and other information as mentioned above.</p>
+<p>If any file is mapped in any of these memory regions, VAD node contains the full-path information for that file. If any dll or exe is mapped in one of these memory ranges then the VAD node (which is a Kernel structure) contains the full path on disk for that dll/exe. This information helps in identifying any malicious activities like unlinking dll in the standard _PEB ldrmodules. The information is still available even if dll is unlinked from all 3 ldrmodules in _PEB (which is a user mode structure).</p>
+<p>VAD information can be used in revealing many attacks like dll injection, reflective code injection etc.</p>
+<p>There are 2 ways to obtain VAD information using Volatility:</p>
+<ol type="1">
+<li>vadwalk</li>
+<li>vadinfo</li>
+</ol>
+<h4 id="5121-vadwalk">5.12.1. <a name='VadWalk'></a>VadWalk</h4>
+<p><code>python3 vol.py -f &lt;image&gt; windows.vadwalk.VadWalk [--pid &lt;pid&gt;]</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>Process</th>
+<th>Offset</th>
+<th>Parent</th>
+<th>Left</th>
+<th>Right</th>
+<th>Start</th>
+<th>End</th>
+<th>Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4</td>
+<td>System</td>
+<td>0xb606c5887090</td>
+<td>0x0</td>
+<td>0xb606bf4ac0b0</td>
+<td>0xb606bf4724b0</td>
+<td>0x24d2e930000</td>
+<td>0x24d2e930fff</td>
+<td>Vad</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>System</td>
+<td>0xb606bf4ac0b0</td>
+<td>0xb606c5887090</td>
+<td>0xb606bfbfea60</td>
+<td>0xb606bf4ac3d0</td>
+<td>0x7ffe0000</td>
+<td>0x7ffe0fff</td>
+<td>VadS</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>System</td>
+<td>0xb606bfbfea60</td>
+<td>0xb606bf4ac0b0</td>
+<td>0x0</td>
+<td>0x0</td>
+<td>0x77700000</td>
+<td>0x778a3fff</td>
+<td>Vad</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>System</td>
+<td>0xb606bf4ac3d0</td>
+<td>0xb606bf4ac0b0</td>
+<td>0x0</td>
+<td>0x0</td>
+<td>0x7ffe8000</td>
+<td>0x7ffe8fff</td>
+<td>VadS</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5122-vadinfo">5.12.2. <a name='VadInfo'></a>VadInfo</h4>
+<p><code>python3 vol.py -f &lt;image&gt; windows.vadinfo.VadInfo</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>PID</th>
+<th>Process</th>
+<th>Offset</th>
+<th>Start VPN</th>
+<th>End VPN</th>
+<th>Tag</th>
+<th>Protection</th>
+<th>CommitCharge</th>
+<th>PrivateMemory</th>
+<th>Parent</th>
+<th>File</th>
+<th>File output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4</td>
+<td>System</td>
+<td>0xffffb606c5887090</td>
+<td>0x24d2e930000</td>
+<td>0x24d2e930fff</td>
+<td>Vad</td>
+<td>PAGE_READWRITE</td>
+<td>0</td>
+<td>0</td>
+<td>0x0</td>
+<td>N/A</td>
+<td>Disabled</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>System</td>
+<td>0xffffb606bf4ac0b0</td>
+<td>0x7ffe0000</td>
+<td>0x7ffe0fff</td>
+<td>VadS</td>
+<td>PAGE_READONLY</td>
+<td>1</td>
+<td>1</td>
+<td>0xffffb606c5887090</td>
+<td>N/A</td>
+<td>Disabled</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>System</td>
+<td>0xffffb606bfbfea60</td>
+<td>0x77700000</td>
+<td>0x778a3fff</td>
+<td>Vad</td>
+<td>PAGE_EXECUTE_WRITECOPY</td>
+<td>9</td>
+<td>0</td>
+<td>0xffffb606bf4ac0b0</td>
+<td>\Windows\SysWOW64\ntdll.dll</td>
+<td>Disabled</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>System</td>
+<td>0xffffb606bf4ac3d0</td>
+<td>0x7ffe8000</td>
+<td>0x7ffe8fff</td>
+<td>VadS</td>
+<td>PAGE_READONLY</td>
+<td>1</td>
+<td>1</td>
+<td>0xffffb606bf4ac0b0</td>
+<td>N/A</td>
+<td>Disabled</td>
+</tr>
+</tbody>
+</table>
+<p>Volatility also have the capability to perform yarascan on VADs.</p>
+<h4 id="5123-vadyarascan">5.12.3. <a name='VadYaraScan'></a>VadYaraScan</h4>
+<pre class="shell"><code>usage: volatility windows.vadyarascan.VadYaraScan [-h] [--insensitive]
+                         [--wide]
+                         [--yara-rules YARA_RULES]
+                         [--yara-file YARA_FILE]
+                         [--yara-compiled-file YARA_COMPILED_FILE]
+                         [--max-size MAX_SIZE]
+                         [--pid [PID ...]]
+
+options:
+ -h, --help      show this help message and exit
+ --insensitive     Makes the search case insensitive
+ --wide        Match wide (unicode) strings
+ --yara-rules YARA_RULES
+            Yara rules (as a string)
+ --yara-file YARA_FILE
+            Yara rules (as a file)
+ --yara-compiled-file YARA_COMPILED_FILE
+            Yara compiled rules (as a file)
+ --max-size MAX_SIZE  Set the maximum size (default is 1GB)
+ --pid [PID ...]    Process IDs to include (all other processes are
+            excluded)</code></pre>
+<h3 id="513-mutants">5.13. <a name='Mutants'></a>Mutants</h3>
+<p><code>python3 vol.py -f &lt;image&gt; windows.mutantscan.MutantScan</code></p>
+<h3 id="514-truecrypt-not-tested">5.14. <a name='TrueCryptNotTested'></a>TrueCrypt (Not Tested)</h3>
+<p>Truecrypt passphrase can be retrieved.</p>
+<p><code>python3 vol.py -f &lt;image&gt; windows.truecrypt.Passphrase</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Offset</th>
+<th>Length</th>
+<th>Passphrase</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<hr />
+<h3 id="515-other-file-system-information">5.15. <a name='OtherFileSystemInformation'></a>Other File System Information</h3>
+<ul>
+<li>Paging statistics</li>
+<li>Pool Scanner</li>
+<li>Big Pools</li>
+<li>SSDT (System Service Descriptor Table) -- A table that maps syscalls to kernel function addresses.</li>
+<li>MBRScan (Master Boot Record)</li>
+</ul>
+<h3 id="5151-statistics">5.15.1. <a name='Statistics'></a>Statistics</h3>
+<p><code>python3 vol.py -f &lt;image&gt; windows.statistics.Statistics</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Valid pages (all)</th>
+<th>Valid pages (large)</th>
+<th>Swapped Pages (all)</th>
+<th>Swapped Pages (large)</th>
+<th>Invalid Pages (all)</th>
+<th>Invalid Pages (large)</th>
+<th>Other Invalid Pages (all)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>501</td>
+<td>501</td>
+<td>3852440</td>
+<td>3852440</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5152-poolscanner">5.15.2. <a name='PoolScanner'></a>PoolScanner</h3>
+<p><code>python3 vol.py -f &lt;image&gt; windows.poolscanner.PoolScanner</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Tag</th>
+<th>Offset</th>
+<th>Layer</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>symbol_table_name1!_OBJECT_SYMBOLIC_LINK</td>
+<td>0xa60c65e0b3e0</td>
+<td>layer_name</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>symbol_table_name1!_OBJECT_SYMBOLIC_LINK</td>
+<td>0xa60c65e17d40</td>
+<td>layer_name</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5153-bigpools">5.15.3. <a name='BigPools'></a>BigPools</h3>
+<p><code>python3 vol.py -f &lt;image&gt; windows.bigpools.BigPools</code></p>
+<p>Allocation | Tag | PoolType | NumberOfBytes | Status</p>
+<p>0xffffa60c66fe0000 | CM25 | PagedPoolCacheAligned | 0x1000 | Allocated 0xffffa60c69e66000 | MmSt | PagedPool | 0x1000 | Allocated 0xffffa60c660c7000 | MmSt | PagedPool | 0x1aa0 | Allocated 0xffffb606c4973000 | Cont | NonPagedPoolNx | 0x1000 | Allocated</p>
+<h3 id="5154-ssdt-system-service-descriptor-table">5.15.4. <a name='SSDT'></a>SSDT (System Service Descriptor Table)</h3>
+<p><code>python3 vol.py -f &lt;image&gt; windows.ssdt.SSDT</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Index</th>
+<th>Address</th>
+<th>Module</th>
+<th>Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0xf80611b2b1d0</td>
+<td>ntoskrnl</td>
+<td>NtAccessCheck</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0xf80611b4b040</td>
+<td>ntoskrnl</td>
+<td>NtWorkerFactoryWorkerReady</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0xf80611f1a6d0</td>
+<td>ntoskrnl</td>
+<td>NtAcceptConnectPort</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5155-mbr-master-boot-record">5.15.5. <a name='MBRScan'></a>MBR (Master Boot Record)</h3>
+<p><code>python3 vol.py -f &lt;image&gt; windows.mbrscan.MBRScan</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Potential MBR at Physical Offset</th>
+<th>Disk Signature</th>
+<th>Bootcode MD5</th>
+<th>Full MBR MD5</th>
+<th>PartitionIndex</th>
+<th>Bootable</th>
+<th>PartitionType</th>
+<th>SectorInSize</th>
+<th>Disasm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0x7c80</td>
+<td>00-00-00-00</td>
+<td>a5c518586301f86356a11651d9fc1987</td>
+<td>af916b11da7a39636640ab035045222d</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 b6 7a 80 9f 68 d0 b6 7a 66 02 b4 ac 40 02 80 9f d0 7a 5e 87 01 00 00 02 00 00 00 00 80 9f c0 9f 80 9f 05 00 5e 00 dc 7a 80 9f 68 d0 dc 7a 66 02 b4 ac 40 02 80 9f f6 7a 5e 87 01 00 00 02 00 00 00 00 80 9f c0 9f 80 9f fe 7a 80 9f 68 d0 fe 7a 66 02 b4 ac 40 02 80 9f 0e 7b 80 9f 12 7b 80 9f 68 d0 12 7b 66 02 b4 ac 40 02 80 9f 2c 7b 5e 87 01 00 00 02 00 00 00 00 80 9f c0 9f 80 9f 05 00 5e 00 5e 00 f8 00 36 7b 00 f0 00 00 5e 00 00 00 54 7b 70 62 5e 00 c0 9f 6f 37 00 00 72 7b 00 00 e0 85 00 00 01 00 42 00 c0 9f 05 07 0c ec be 07 e9 ec 00 00 e0 85 00 00 72 7b be 07 80 85 00 00 80 85 00 00 6f 00 47 01 c0 07 06 02 10 00 01 00 00 00 e0 85 6f 37 f8 00 00 00 00 00 c0 07 00 20 c0 07 00 00 00 00 08 38 00 00 be 07 00 00 a8 7b 00 00 00 00 00 00 00 00 00 00 08 00 00 00 00 20 00 00 8b 05 00 00 00 00 08 38 00 00 be 07 00 00 ca 7b 00 00 48 39 be 07 8b fe 00 00 08 38 be 07 d0 7b 00 00 00 00 66 00 00 bb c0 07 00 20 00 10 c0 07 46 02 00 00 00 00 08 38 00 00 be 07 00 00 fa 7b 00 00 08 39 00 00 00 00 00 00 66 00 00 00 08 38 00 00 c0 07 00 00 00 20 eb 52 90 4e 54 46 53 20 20 20 20 00 02 08 80 20 00 70 2f f8 00 f8 00 00 3f 00 ff 00 00 08 00 00 00 00 00 00 80 00 80 00 ff ef 3f 06 00 00 00 00 00 00 0c 00 00 00 00 00 02 00</td>
+</tr>
+<tr class="even">
+<td>* 0x7c80</td>
+<td>00-00-00-00</td>
+<td>a5c518586301f86356a11651d9fc1987</td>
+<td>af916b11da7a39636640ab035045222d</td>
+<td>1</td>
+<td>False</td>
+<td>FAT12,CHS</td>
+<td>0x9ed2d362</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td>* 0x7c80</td>
+<td>00-00-00-00</td>
+<td>a5c518586301f86356a11651d9fc1987</td>
+<td>af916b11da7a39636640ab035045222d</td>
+<td>2</td>
+<td>False</td>
+<td>Not Defined PartitionType</td>
+<td>0x7c068fb</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>* 0x7c80</td>
+<td>00-00-00-00</td>
+<td>a5c518586301f86356a11651d9fc1987</td>
+<td>af916b11da7a39636640ab035045222d</td>
+<td>3</td>
+<td>False</td>
+<td>Empty</td>
+<td>0x4e00033e</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
