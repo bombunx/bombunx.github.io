@@ -349,6 +349,13 @@ INFO   volatility3.framework.automagic: Running automagic: KernelModule</code></
 <p><a href="https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip">https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip</a></p>
 <p><a href="https://downloads.volatilityfoundation.org/volatility3/symbols/mac.zip">https://downloads.volatilityfoundation.org/volatility3/symbols/mac.zip</a></p>
 <p><a href="https://downloads.volatilityfoundation.org/volatility3/symbols/linux.zip">https://downloads.volatilityfoundation.org/volatility3/symbols/linux.zip</a></p>
+
+<p>Additional Windows Symbol Tables not included in the above links can be manually downloaded using the <code>pdbconv.py</code> script as such:</p>
+<p><code>python3 volatility3/framework/symbols/windows/pdbconv.py -p &lt;PDB_filename&gt; -g &lt;identifier&gt; </code></p>
+
+<p>Here is an example on h ow to download a profile:</p>
+<p><code>python3 volatility3/framework/symbols/windows/pdbconv.py -p ntkrnlmp.pdb -g D9424FC4861E47C10FAD1B35DEC6DCC8-1</code></p>
+
 <p>Important: The first run of volatility with new symbol files will require the cache to be updated. The symbol packs contain a large number of symbol files and so may take some time to update! However, this process only needs to be run once on each new symbol file, so assuming the pack stays in the same location will not need to be done again. Please also note it can be interrupted and next run will restart itself.</p>
 <h3 id="31-linux">3.1. <a name='Linux'></a>Linux</h3>
 <p>Due to the ease of compiling Linux kernels, the Linux symbol tables provided only contains the common ones used. Customised Linux profiles can be generated.</p>
