@@ -151,7 +151,7 @@
 </head>
 <body>
 <h1 id="volatility-3-guidebook">Volatility 3 GuideBook</h1>
-<p>(Updated as of 11/03/2024)</p>
+<p>(Updated as of 15/04/2024)</p>
 <p><a href="https://github.com/volatilityfoundation/volatility3">https://github.com/volatilityfoundation/volatility3</a></p>
 <!-- vscode-markdown-toc -->
 
@@ -344,7 +344,7 @@ DEBUG  volatility3.schemas: All validations will report success, even with malfo
 INFO   volatility3.framework.automagic: Running automagic: SymbolFinder
 INFO   volatility3.framework.automagic: Running automagic: KernelModule</code></pre>
 <h2 id="3-downloading-image-profile">3. <a name='DownloadingImageProfile'></a>Downloading Image Profile</h2>
-<p>After getting the profile for the images, the profiles will have to be added to the <code>profiles/</code> folder of Volatility 3.</p>
+<p>After getting the profile for the images, the profiles will have to be added to the <code>symbols/</code> folder of Volatility 3.</p>
 <p>Profile download links:</p>
 <p><a href="https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip">https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip</a></p>
 <p><a href="https://downloads.volatilityfoundation.org/volatility3/symbols/mac.zip">https://downloads.volatilityfoundation.org/volatility3/symbols/mac.zip</a></p>
@@ -353,12 +353,14 @@ INFO   volatility3.framework.automagic: Running automagic: KernelModule</code></
 <p>Additional Windows Symbol Tables not included in the above links can be manually downloaded using the <code>pdbconv.py</code> script as such:</p>
 <p><code>python3 volatility3/framework/symbols/windows/pdbconv.py -p &lt;PDB_filename&gt; -g &lt;identifier&gt; </code></p>
 
-<p>Here is an example on h ow to download a profile:</p>
+<p>Here is an example on how to download a profile:</p>
 <p><code>python3 volatility3/framework/symbols/windows/pdbconv.py -p ntkrnlmp.pdb -g D9424FC4861E47C10FAD1B35DEC6DCC8-1</code></p>
 
 <p>Important: The first run of volatility with new symbol files will require the cache to be updated. The symbol packs contain a large number of symbol files and so may take some time to update! However, this process only needs to be run once on each new symbol file, so assuming the pack stays in the same location will not need to be done again. Please also note it can be interrupted and next run will restart itself.</p>
 <h3 id="31-linux">3.1. <a name='Linux'></a>Linux</h3>
 <p>Due to the ease of compiling Linux kernels, the Linux symbol tables provided only contains the common ones used. Customised Linux profiles can be generated.</p>
+<p>Precompiled Linux ISF (Intermediate Symbol File) files are available , which can be downloaded from: </p>
+<a href="https://isf-server.techanarchy.net/">Volatility3 Linux ISF Server (Currently down)</a>
 <h4 id="311-creating-linux-profiles">3.1.1 <a name='CreatingLinuxProfiles'></a>Creating Linux Profiles</h4>
 <p>Can be produced by a tool such as <a href="https://github.com/volatilityfoundation/dwarf2json">dwarf2json</a>.</p>
 <h2 id="5-windows-image-analysis">5. <a name='WindowsImageAnalysis'></a>Windows Image Analysis</h2>
